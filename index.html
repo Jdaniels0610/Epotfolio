@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jada Daniels — ePortfolio / Resume</title>
+<meta name="description" content="Interactive ePortfolio and resume for Jada Daniels — Computer Science (Cybersecurity) student and IT intern." />
+<style>
+  :root{
+    --bg:#0b0710;
+    --card:#0f0b14;
+    --accent:#6a4fb0;      /* purple */
+    --accent-2:#9b6cff;    /* lighter purple */
+    --accent-3:#2b2230;    /* deep muted purple/black */
+    --muted:#bfc3d6;
+    --glass: rgba(255,255,255,0.03);
+    --glass-2: rgba(255,255,255,0.02);
+    --success:#7be495;
+    --danger:#ff6b6b;
+    --max-width:1100px;
+    --radius:14px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  /* Reset-ish */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background: linear-gradient(180deg,var(--bg), #07050a 80%);
+    color:var(--muted);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  .wrap{
+    max-width:var(--max-width);
+    margin:28px auto;
+    padding:24px;
+  }
+
+  /* Header */
+  header.site-header{
+    background: linear-gradient(90deg, rgba(106,79,176,0.14), rgba(155,108,255,0.06));
+    border-radius:var(--radius);
+    display:flex;
+    gap:20px;
+    align-items:center;
+    padding:18px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+    position:sticky;
+    top:18px;
+    z-index:40;
+    backdrop-filter: blur(6px);
+  }
+
+  .avatar{
+    width:96px;
+    height:96px;
+    flex:0 0 96px;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:700;
+    font-size:28px;
+    box-shadow: 0 8px 25px rgba(106,79,176,0.25), inset 0 -6px 24px rgba(0,0,0,0.2);
+  }
+
+  .head-meta{
+    flex:1;
+    min-width:0;
+  }
+
+  .head-meta h1{
+    margin:0 0 6px 0;
+    font-size:22px;
+    color:#fff;
+    letter-spacing:0.2px;
+  }
+  .head-meta p.title{
+    margin:0;
+    color:var(--muted);
+    font-weight:600;
+    font-size:13px;
+  }
+
+  .header-actions{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+
+  .btn{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:var(--muted);
+    padding:8px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:all .22s ease;
+    backdrop-filter: blur(4px);
+  }
+  .btn:hover{ transform:translateY(-3px); box-shadow: 0 8px 20px rgba(106,79,176,0.18); }
+  .btn.primary{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    border:none;
+    color:#08040b;
+    box-shadow: 0 8px 30px rgba(155,108,255,0.12);
+  }
+
+  nav.top-nav{ display:flex; gap:8px; flex-wrap:wrap; }
+
+  /* Layout */
+  .grid{
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    gap:22px;
+    margin-top:22px;
+  }
+
+  @media (max-width:900px){
+    .grid{ grid-template-columns: 1fr; }
+    header.site-header{flex-direction:column;align-items:flex-start}
+    .avatar{width:80px;height:80px}
+  }
+
+  /* Left column */
+  aside.card{
+    background:linear-gradient(180deg,var(--card), var(--glass));
+    padding:18px;
+    border-radius:12px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  }
+  .contact-list, .edu-list{ display:flex; flex-direction:column; gap:8px; font-size:14px }
+  .contact-list a{ color:var(--muted); text-decoration:none; display:flex; gap:8px; align-items:center; }
+  .skill-chip{
+    display:inline-block;
+    border-radius:999px;
+    padding:6px 10px;
+    margin:6px 6px 6px 0;
+    background:linear-gradient(90deg, rgba(155,108,255,0.08), rgba(106,79,176,0.06));
+    color:var(--muted);
+    font-weight:600;
+    cursor:pointer;
+    transition: transform .18s ease;
+    font-size:13px;
+  }
+  .skill-chip:hover{ transform:translateY(-4px) scale(1.02); box-shadow: 0 6px 20px rgba(102,72,160,0.12); }
+
+  /* Right column */
+  main.card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    padding:22px;
+    border-radius:12px;
+    min-height:320px;
+  }
+
+  section.block{ margin-bottom:18px; padding-bottom:6px; border-bottom:1px dashed rgba(255,255,255,0.03); }
+
+  h2.section-title{
+    margin:0 0 10px 0;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:16px;
+  }
+  .muted{ color:var(--muted); font-size:13px }
+
+  /* Experience / project cards */
+  .exp-list{ display:flex; flex-direction:column; gap:12px }
+  .exp-item{
+    background: linear-gradient(90deg, rgba(11,7,16,0.6), rgba(20,14,24,0.5));
+    border-radius:10px;
+    padding:12px;
+    transition: transform .22s ease, box-shadow .22s ease;
+    cursor:default;
+    overflow:hidden;
+  }
+  .exp-item:hover{ transform:translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
+  .exp-item header{ display:flex; justify-content:space-between; gap:12px; align-items:center; }
+  .exp-item h3{ margin:0; color:#fff; font-size:15px; }
+  .exp-item .meta{ font-size:13px; color:var(--muted) }
+  .exp-item p{ margin:8px 0 0 0; color:var(--muted); font-size:14px; }
+
+  .toggle-details{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.04);
+    color:var(--muted);
+    padding:6px 10px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+  }
+
+  /* Skill bars */
+  .skill-bar{ display:flex; align-items:center; gap:12px; margin:8px 0; }
+  .bar-track{ flex:1; height:10px; background:var(--glass-2); border-radius:999px; overflow:hidden; }
+  .bar-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); border-radius:inherit; transition: width .9s cubic-bezier(.2,.9,.2,1); }
+
+  /* Buttons & micro interactions */
+  .controls{ display:flex; gap:10px; align-items:center; justify-content:flex-end; }
+  .chip{ padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:var(--muted); font-weight:700; }
+
+  /* Footer */
+  footer.site-footer{
+    margin-top:18px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* small utilities */
+  .row{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .pill{ padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.02); font-weight:700; color:var(--muted); font-size:13px }
+
+  /* Scroll behavior */
+  html { scroll-behavior: smooth; }
+
+  /* Fade-in animation helper */
+  .reveal{ opacity:0; transform: translateY(18px); transition: all .7s cubic-bezier(.2,.9,.2,1); }
+  .reveal.visible{ opacity:1; transform:none; }
+
+  /* Hover underline nav */
+  nav.top-nav a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:8px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:13px;
+  }
+  nav.top-nav a:hover{ color:#fff; background: linear-gradient(90deg, rgba(155,108,255,0.08), rgba(106,79,176,0.05)); transform:translateY(-3px); }
+
+  /* Small screen tweaks for header actions */
+  @media (max-width:520px){
+    .header-actions{ width:100%; justify-content:space-between }
+    .controls{ order:2; width:100%; justify-content:space-between }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header" role="banner" aria-label="Header">
+      <div class="avatar" aria-hidden="true">JD</div>
+      <div class="head-meta">
+        <h1>Jada Daniels</h1>
+        <p class="title">Computer Science — Cybersecurity | IT & Knowledge Management Intern</p>
+        <div style="margin-top:8px;">
+          <nav class="top-nav" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="controls">
+          <button class="btn" id="printBtn" title="Print or save as PDF">Print CV</button>
+          <button class="btn primary" id="themeToggle" title="Toggle theme">Toggle Theme</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid" role="main">
+      <!-- LEFT COLUMN -->
+      <aside class="card" aria-label="Sidebar">
+        <section class="block">
+          <h2 class="section-title">Contact</h2>
+          <div class="contact-list">
+            <a href="mailto:jada11500610.jd@gmail.com">✉️ jada11500610.jd@gmail.com</a>
+            <a href="tel:+13464411810">📞 (346) 441-1810</a>
+            <div class="muted">📍 Austin, TX</div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2 class="section-title">Quick Summary</h2>
+          <p class="muted">Motivated Computer Science student specializing in cybersecurity, with hands-on experience in IT front-desk support, knowledge management, and lab administration. Passionate about risk assessment, automation for compliance (NIST), and practical cybersecurity controls.</p>
+        </section>
+
+        <section class="block" id="skillsSidebar">
+          <h2 class="section-title">Core Skills</h2>
+          <div>
+            <span class="skill-chip" data-skill="Risk Assessment">Risk Assessment</span>
+            <span class="skill-chip" data-skill="Python">Python</span>
+            <span class="skill-chip" data-skill="Linux">Linux</span>
+            <span class="skill-chip" data-skill="JavaScript">JavaScript</span>
+            <span class="skill-chip" data-skill="Microsoft 365">Microsoft 365</span>
+            <span class="skill-chip" data-skill="Command Line">Command Line</span>
+            <span class="skill-chip" data-skill="Encryption">Encryption</span>
+          </div>
+        </section>
+
+        <section class="block" id="education">
+          <h2 class="section-title">Education</h2>
+          <div class="edu-list muted">
+            <div>
+              <strong>Huston-Tillotson University</strong><br><span class="muted">Bachelor's Degree, Computer Science - Cybersecurity · Austin, TX · Expected Dec 2025</span>
+            </div>
+            <div>
+              <strong>Houston Community College</strong><br><span class="muted">Associates of Science · Houston, TX · May 2023</span>
+            </div>
+            <div>
+              <strong>South Early College High School</strong><br><span class="muted">High School Diploma · Jun 2023</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2 class="section-title">Extras</h2>
+          <div class="muted">
+            Vice President, NSBE · Apr 2025<br>
+            Treasurer, Delta Sigma Theta Sorority, Inc · Oct 2024<br>
+            Honors Scholar, W.E.B. DuBois · Aug 2023
+          </div>
+        </section>
+      </aside>
+
+      <!-- RIGHT COLUMN -->
+      <main class="card" aria-live="polite">
+        <!-- ABOUT -->
+        <section id="about" class="block reveal">
+          <h2 class="section-title">About</h2>
+          <p class="muted">I am a Computer Science student specializing in cybersecurity with practical experience supporting IT operations and knowledge management. I enjoy improving processes for compliance (including NIST 800-181), automating repetitive tasks, and supporting users through clear documentation and dependable front-line support.</p>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="block reveal">
+          <h2 class="section-title">Skills & Proficiency</h2>
+
+          <div class="skill-bar">
+            <div style="width:140px;font-weight:700;color:#fff">Risk Assessment</div>
+            <div class="bar-track" aria-hidden="true"><div class="bar-fill" data-fill="85"></div></div>
+            <div style="width:44px;text-align:right" class="muted">85%</div>
+          </div>
+
+          <div class="skill-bar">
+            <div style="width:140px;font-weight:700;color:#fff">Python</div>
+            <div class="bar-track"><div class="bar-fill" data-fill="78"></div></div>
+            <div style="width:44px;text-align:right" class="muted">78%</div>
+          </div>
+
+          <div class="skill-bar">
+            <div style="width:140px;font-weight:700;color:#fff">Linux</div>
+            <div class="bar-track"><div class="bar-fill" data-fill="82"></div></div>
+            <div style="width:44px;text-align:right" class="muted">82%</div>
+          </div>
+
+          <div class="skill-bar">
+            <div style="width:140px;font-weight:700;color:#fff">JavaScript</div>
+            <div class="bar-track"><div class="bar-fill" data-fill="72"></div></div>
+            <div style="width:44px;text-align:right" class="muted">72%</div>
+          </div>
+
+          <div class="skill-bar">
+            <div style="width:140px;font-weight:700;color:#fff">Encryption</div>
+            <div class="bar-track"><div class="bar-fill" data-fill="70"></div></div>
+            <div style="width:44px;text-align:right" class="muted">70%</div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <small class="muted">Tip: Click any skill chip in the left column to highlight related skills in the list.</small>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="block reveal">
+          <h2 class="section-title">Experience</h2>
+          <div class="exp-list">
+            <article class="exp-item" id="exp-ht" aria-labelledby="exp-ht-title">
+              <header>
+                <div>
+                  <h3 id="exp-ht-title">Huston-Tillotson University — IT Front Desk & Knowledge Management Intern</h3>
+                  <div class="meta muted">Austin, TX · Sep 2025 — Present</div>
+                </div>
+                <div class="row">
+                  <button class="toggle-details" data-target="#ht-details">Details</button>
+                </div>
+              </header>
+              <div id="ht-details" style="margin-top:10px; display:none;">
+                <p class="muted">Collaborated on implementation of NIST 800-181 cybersecurity standards, analyzed processes to identify automation opportunities and streamline compliance. Embedded in review cycles to maximize scoring results and improve system efficiency. Front desk IT support and ticket management (Freshservice). Provide administrative support for IT operations.</p>
+              </div>
+            </article>
+
+            <article class="exp-item" id="exp-cait" aria-labelledby="exp-cait-title">
+              <header>
+                <div>
+                  <h3 id="exp-cait-title">Center for Academic Innovation and Transformation — CAIT Intern</h3>
+                  <div class="meta muted">Austin, TX · Sep 2023 — Jan 2025</div>
+                </div>
+                <div class="row">
+                  <button class="toggle-details" data-target="#cait-details">Details</button>
+                </div>
+              </header>
+              <div id="cait-details" style="margin-top:10px; display:none;">
+                <p class="muted">Assisted with management of Apple iMac labs to ensure operational efficiency and user support. Coordinated with CAIT director to facilitate teaching and learning opportunities.</p>
+              </div>
+            </article>
+
+            <article class="exp-item" id="exp-heb" aria-labelledby="exp-heb-title">
+              <header>
+                <div>
+                  <h3 id="exp-heb-title">H-E-B — Eshopper</h3>
+                  <div class="meta muted">Austin, TX · Jan 2025</div>
+                </div>
+                <div class="row">
+                  <button class="toggle-details" data-target="#heb-details">Details</button>
+                </div>
+              </header>
+              <div id="heb-details" style="margin-top:10px; display:none;">
+                <p class="muted">Used iPhone-based apps and scanners to receive, track, and complete online customer orders. Reported and troubleshot minor app or syncing issues to maintain workflows.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Projects (example layout) -->
+        <section id="projects" class="block reveal">
+          <h2 class="section-title">Projects & Highlights</h2>
+          <div class="exp-list">
+            <article class="exp-item">
+              <header>
+                <div>
+                  <h3>Knowledge Base Optimization</h3>
+                  <div class="meta muted">Improved documentation workflow for IT knowledge base (SharePoint)</div>
+                </div>
+                <div><span class="pill">Documentation</span></div>
+              </header>
+              <p class="muted">Updated, documented, and maintained IT Knowledge Base; helped standardize articles and reduce repeated tickets by improving searchability and clarity.</p>
+            </article>
+
+            <article class="exp-item">
+              <header>
+                <div>
+                  <h3>Lab Administration & Support</h3>
+                  <div class="meta muted">Apple iMac lab coordination and student support</div>
+                </div>
+                <div><span class="pill">IT Support</span></div>
+              </header>
+              <p class="muted">Managed lab operations, coordinated troubleshooting, and provided procedural improvements to improve uptime and ease-of-use for students and instructors.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="block reveal">
+          <h2 class="section-title">Contact</h2>
+          <p class="muted">I'm available for internships, part-time IT roles, and collaboration on cybersecurity projects. Reach out via email or phone; I'm happy to provide references, additional portfolio items, or a tailored resume for a specific role.</p>
+          <div style="margin-top:12px;">
+            <a class="btn primary" href="mailto:jada11500610.jd@gmail.com">Email Me</a>
+            <button class="btn" id="copyEmail">Copy Email</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer reveal">
+      <div>© <span id="year"></span> Jada Daniels · Based in Austin, TX</div>
+    </footer>
+  </div>
+
+<script>
+/* =========================
+   Small interactive behaviors
+   No external libs — vanilla JS
+   ========================= */
+
+/* 1) Fill year */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* 2) Print button */
+document.getElementById('printBtn').addEventListener('click', function(){
+  window.print();
+});
+
+/* 3) Copy email */
+document.getElementById('copyEmail').addEventListener('click', async function(){
+  try{
+    await navigator.clipboard.writeText('jada11500610.jd@gmail.com');
+    this.textContent = 'Copied!';
+    setTimeout(()=> this.textContent = 'Copy Email', 1800);
+  }catch(e){
+    this.textContent = 'Copy failed';
+    setTimeout(()=> this.textContent = 'Copy Email', 1800);
+  }
+});
+
+/* 4) Theme toggle (switch between default dark and a lighter alternative) */
+const themeToggle = document.getElementById('themeToggle');
+let light = false;
+themeToggle.addEventListener('click', ()=>{
+  light = !light;
+  if(light){
+    document.documentElement.style.setProperty('--bg','#f6f7fb');
+    document.documentElement.style.setProperty('--card','#ffffff');
+    document.documentElement.style.setProperty('--accent','#6a4fb0');
+    document.documentElement.style.setProperty('--accent-2','#9b6cff');
+    document.documentElement.style.setProperty('--muted','#33354a');
+    document.body.style.color = 'var(--muted)';
+    themeToggle.textContent = 'Dark Theme';
+  }else{
+    document.documentElement.style.setProperty('--bg','#0b0710');
+    document.documentElement.style.setProperty('--card','#0f0b14');
+    document.documentElement.style.setProperty('--muted','#bfc3d6');
+    document.body.style.color = 'var(--muted)';
+    themeToggle.textContent = 'Toggle Theme';
+  }
+});
+
+/* 5) Toggle experience details */
+document.querySelectorAll('.toggle-details').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const t = document.querySelector(btn.getAttribute('data-target'));
+    if(!t) return;
+    if(t.style.display === 'none' || t.style.display === ''){
+      t.style.display = 'block';
+      btn.textContent = 'Hide';
+    } else {
+      t.style.display = 'none';
+      btn.textContent = 'Details';
+    }
+  });
+});
+
+/* 6) Skill chips highlight corresponding bars (interactive) */
+const chips = document.querySelectorAll('.skill-chip');
+chips.forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    const skill = chip.dataset.skill;
+    // simple highlight: temporarily pulse any bar that contains the skill label text
+    document.querySelectorAll('.skill-bar').forEach(bar=>{
+      if(bar.textContent.toLowerCase().includes(skill.toLowerCase())){
+        bar.style.transform = 'scale(1.02)';
+        bar.style.transition = 'transform .25s ease';
+        setTimeout(()=> bar.style.transform = '', 700);
+      }
+    });
+  });
+});
+
+/* 7) Animate skill bars on reveal */
+function animateBars(){
+  document.querySelectorAll('.bar-fill').forEach(el=>{
+    const val = el.getAttribute('data-fill') || 60;
+    // small random to keep it lively
+    setTimeout(()=> el.style.width = val + '%', 120);
+  });
+}
+
+/* 8) Scroll reveal using IntersectionObserver */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      // if it's the skills block, animate bars
+      if(entry.target.id === 'skills') animateBars();
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold: 0.12});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* 9) Smooth scroll highlight for nav links (active state on intersection) */
+const sections = document.querySelectorAll('main section, aside section');
+const navLinks = document.querySelectorAll('nav.top-nav a');
+const navObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(ent=>{
+    if(ent.isIntersecting){
+      navLinks.forEach(a=> a.style.opacity = (a.getAttribute('href') === '#'+ent.target.id) ? '1' : '0.6');
+    }
+  });
+},{threshold: 0.35});
+
+sections.forEach(s => navObserver.observe(s));
+
+/* 10) Fancy smooth-scrolling for older browsers fallback */
+document.querySelectorAll('nav.top-nav a').forEach(a=>{
+  a.addEventListener('click', function(e){
+    // if browser supports scroll-behavior we already have it; still use JS smooth scroll to ensure behavior
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(!target) return;
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY - 18,
+      behavior: 'smooth'
+    });
+  });
+});
+
+/* 11) Small accessibility: focus visible state for keyboard users */
+document.addEventListener('keyup', function(e){
+  if(e.key === 'Tab') document.documentElement.style.setProperty('--focus-outline', '2px solid rgba(155,108,255,0.9)');
+});
+
+/* End of script */
+</script>
+</body>
+</html>
