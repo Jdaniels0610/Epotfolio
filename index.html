@@ -3,122 +3,225 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Jada Daniels — Light Funky Portfolio</title>
-<meta name="description" content="Light funky ePortfolio for Jada Daniels — eclectic, creative, professional."/>
+<title>Jada Daniels — Dark Grunge Portfolio</title>
+<meta name="description" content="Dark grunge ePortfolio for Jada Daniels — moody, eclectic, professional."/>
 <style>
-  /* Palette & base */
   :root{
-    --bg:#faf7fc;           /* pale lavender */
-    --card:#ffffff;
-    --text:#2b2b33;
-    --muted:#63626a;
-    --accent:#6a4fb0;
-    --accent-2:#e092ff;
-    --warm:#e6bea7;
-    --radius:14px;
+    --bg:#0b0710;        /* deep moody */
+    --card:#121018;
+    --panel:#1f1924;
+    --text:#ddd7f0;
+    --muted:#b7aeda;
+    --accent:#8f5bd6;    /* plum neon */
+    --accent-2:#e78bff;
+    --cheetah-color: rgba(255,210,150,0.06);
+    --radius:12px;
     --maxw:1100px;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   }
 
-  /* Utility pattern: subtle paper noise (SVG dataURI) */
   body{
     margin:0;
     background:
-      radial-gradient(rgba(106,79,176,0.03) 0.5px, transparent 0.6px),
-      linear-gradient(180deg, rgba(250,247,252,1), rgba(252,250,254,1));
-    background-size:18px 18px, 100% 100%;
+      linear-gradient(180deg, rgba(10,7,13,1), rgba(12,8,18,1));
     color:var(--text);
     -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.5;
   }
-
   .wrap{ max-width:var(--maxw); margin:28px auto; padding:20px; }
 
-  /* Header */
   header{
-    display:flex; align-items:center; justify-content:space-between;
-    gap:12px; padding:14px; border-radius:var(--radius);
-    background: linear-gradient(90deg, rgba(106,79,176,0.08), rgba(224,146,255,0.04));
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-    position:sticky; top:14px; z-index:40;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:14px; border-radius:14px; background:linear-gradient(90deg, rgba(143,91,214,0.06), rgba(231,139,255,0.02));
+    box-shadow: 0 18px 60px rgba(0,0,0,0.6); position:sticky; top:14px; z-index:40;
+    border:1px solid rgba(255,255,255,0.03);
   }
-  .left{ display:flex; gap:14px; align-items:center; min-width:0; }
+  .left{ display:flex; gap:12px; align-items:center; }
   .avatar{
-    width:88px; height:88px; border-radius:12px;
-    background: linear-gradient(135deg,var(--accent), var(--accent-2));
-    color: #fff; display:flex; align-items:center; justify-content:center;
-    font-weight:800; font-size:28px; box-shadow: 0 8px 30px rgba(106,79,176,0.15);
-    border:4px solid rgba(255,255,255,0.25);
+    width:84px; height:84px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    background: conic-gradient(from 180deg at 50% 50%, rgba(143,91,214,0.9), rgba(231,139,255,0.8));
+    font-weight:800; font-size:26px; color:#0b0710; box-shadow: 0 12px 40px rgba(143,91,214,0.14);
+    border:3px solid rgba(255,255,255,0.04);
   }
   h1{ margin:0; font-size:20px; color:var(--text); }
   p.title{ margin:4px 0 0 0; color:var(--muted); font-weight:600; font-size:13px; }
 
-  nav.top{ display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
-  nav.top a{
-    text-decoration:none; color:var(--accent); font-weight:700; font-size:13px;
-    padding:6px 10px; border-radius:10px;
-    transition: all .18s ease;
-  }
-  nav.top a:hover{ background: rgba(106,79,176,0.06); transform:translateY(-3px); }
+  nav.top{ display:flex; gap:8px; margin-top:8px; }
+  nav.top a{ color:var(--muted); text-decoration:none; font-weight:700; padding:6px 10px; border-radius:8px; transition: all .18s ease; }
+  nav.top a:hover{ color:#fff; box-shadow: 0 6px 24px rgba(143,91,214,0.12); transform:translateY(-3px); }
 
   .controls{ display:flex; gap:8px; align-items:center; }
 
   .btn{
     background: linear-gradient(90deg,var(--accent),var(--accent-2));
-    color:#fff; border:none; padding:8px 12px; border-radius:10px; cursor:pointer;
-    font-weight:700; box-shadow: 0 8px 22px rgba(106,79,176,0.12);
+    color:#100511; border:none; padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:800;
+    box-shadow: 0 10px 30px rgba(143,91,214,0.16);
   }
-  .ghost{ background:transparent; border:1px solid rgba(0,0,0,0.06); color:var(--muted); padding:8px 12px; border-radius:10px; cursor:pointer; }
+  .ghost{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:8px 10px; border-radius:10px; cursor:pointer; }
 
-  /* Layout */
-  .grid{ display:grid; grid-template-columns:300px 1fr; gap:22px; margin-top:20px; }
-  @media (max-width:900px){ .grid{ grid-template-columns:1fr } .avatar{width:72px;height:72px} }
+  .grid{ display:grid; grid-template-columns:320px 1fr; gap:22px; margin-top:20px; }
+  @media (max-width:900px){ .grid{ grid-template-columns:1fr } .avatar{width:66px;height:66px} }
 
-  aside.card, main.card{ background:var(--card); border-radius:12px; padding:18px; box-shadow: 0 12px 30px rgba(20,18,22,0.04); }
+  aside.card, main.card{ background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.01)); border-radius:12px; padding:18px; box-shadow: 0 18px 60px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.02); }
 
-  /* Cheetah accent (CSS generated pattern using radial-gradients) */
-  .cheetah{
-    --s:14px;
+  h2{ color:var(--accent); margin:0 0 8px 0; font-size:16px; }
+
+  /* zebra stripe accent for dark grunge (repeating linear) */
+  .zebra{
+    background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 6px, transparent 6px 14px);
+    border-radius:10px; padding:10px;
+  }
+
+  .cheetah-subtle{
     background-image:
-      radial-gradient(circle at 12% 20%, rgba(0,0,0,0.14) 0 1.6px, transparent 2px),
-      radial-gradient(circle at 40% 70%, rgba(0,0,0,0.12) 0 1.6px, transparent 2px),
-      radial-gradient(circle at 82% 32%, rgba(0,0,0,0.12) 0 1.6px, transparent 2px);
-    background-size: var(--s) var(--s);
+      radial-gradient(circle at 10% 20%, rgba(255,210,150,0.06) 0 2px, transparent 4px),
+      radial-gradient(circle at 40% 70%, rgba(255,210,150,0.05) 0 2px, transparent 4px),
+      radial-gradient(circle at 82% 32%, rgba(255,210,150,0.05) 0 2px, transparent 4px);
+    background-size: 16px 16px;
     border-radius:10px;
     padding:10px;
   }
 
-  h2{ color:var(--accent); margin:0 0 8px 0; font-size:16px; }
-
   .muted{ color:var(--muted); font-size:14px; }
 
-  .skill-chip{ display:inline-block; padding:6px 10px; border-radius:999px; background:linear-gradient(90deg, rgba(106,79,176,0.08), rgba(224,146,255,0.04)); margin:6px 6px 6px 0; font-weight:700; cursor:pointer; }
+  .skill-chip{ display:inline-block; padding:6px 10px; border-radius:999px; background: rgba(255,255,255,0.03); color:var(--muted); margin:6px 6px 6px 0; font-weight:800; cursor:pointer; border:1px solid rgba(255,255,255,0.02); }
 
-  .exp{ display:flex; flex-direction:column; gap:12px; margin-top:10px; }
-  .exp-item{ background: linear-gradient(180deg, rgba(250,247,252,1), rgba(246,241,249,0.9)); border-radius:10px; padding:12px; border-left:6px solid var(--warm); box-shadow: 0 8px 18px rgba(0,0,0,0.03); }
-  .exp-item h3{ margin:0; font-size:15px; color:var(--text); }
-  .exp-item p{ margin:6px 0 0 0; color:var(--muted); font-size:14px; }
+  .exp-item{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-left:4px solid rgba(143,91,214,0.85); padding:12px 14px; border-radius:10px; margin-bottom:12px; box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
 
-  /* decorative poster collage frames */
-  .poster{
-    border-radius:10px; overflow:hidden; padding:10px; background:linear-gradient(180deg, rgba(250,247,252,1), rgba(251,249,253,1));
-    box-shadow: 0 18px 40px rgba(100,60,140,0.06);
-    border:1px solid rgba(0,0,0,0.03);
-  }
+  .poster-frame{ border-radius:10px; overflow:hidden; border:1px dashed rgba(255,255,255,0.03); padding:8px; }
 
-  /* footer */
   footer{ text-align:center; margin-top:18px; color:var(--muted); font-size:13px; }
 
-  /* reveal animations */
-  .reveal{ opacity:0; transform:translateY(14px); transition: all .7s cubic-bezier(.2,.9,.2,1); }
+  .reveal{ opacity:0; transform:translateY(12px); transition: all .7s cubic-bezier(.2,.9,.2,1); }
   .reveal.visible{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="left">
+        <div class="avatar">JD</div>
+        <div>
+          <h1>Jada Daniels</h1>
+          <p class="title">Computer Science • Cybersecurity • Creative Tech</p>
+          <nav class="top">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
 
-  /* small interactive niceties */
-  .btn:active{ transform:translateY(1px) }
-  a.icon{ color:var(--accent); font-weight:900; }
+      <div class="controls">
+        <button class="ghost" id="print">Print</button>
+        <button class="btn" id="email">Email</button>
+      </div>
+    </header>
 
-  /* responsive small tweaks */
-  @media (max-width:520px){
-    header{ padding:12px }
-    .controls{ width:100%; justify-content:flex-end
+    <div class="grid">
+      <!-- sidebar -->
+      <aside class="card reveal">
+        <div class="zebra poster-frame">
+          <h2>Contact</h2>
+          <p class="muted">📧 jada11500610.jd@gmail.com<br>📞 (346) 441-1810<br>📍 Austin, TX</p>
+        </div>
+
+        <div style="margin-top:14px;">
+          <h2>Skills</h2>
+          <div>
+            <span class="skill-chip">Risk Assessment</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Linux</span>
+            <span class="skill-chip">JavaScript</span>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <h2>Education</h2>
+          <p class="muted"><strong>Huston-Tillotson University</strong><br>B.S. Computer Science (Cybersecurity) • Expected 2025</p>
+        </div>
+      </aside>
+
+      <!-- main -->
+      <main class="card">
+        <section id="about" class="reveal">
+          <h2>About</h2>
+          <p class="muted">I mix technical cybersecurity work with a DIY creative approach — streamlining systems while maintaining a distinct aesthetic. I’m focused on practical security controls, documentation, and automation.</p>
+        </section>
+
+        <section id="skills" class="reveal" style="margin-top:14px;">
+          <h2>Tech & Tools</h2>
+          <div class="poster-frame cheetah-subtle" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <div style="min-width:160px;">
+              <strong>Languages</strong><br><span class="muted">Python • JS • SQL</span>
+            </div>
+            <div style="min-width:160px;">
+              <strong>Systems</strong><br><span class="muted">Linux • macOS • Microsoft 365</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="work" class="reveal" style="margin-top:16px;">
+          <h2>Experience</h2>
+          <div class="exp">
+            <article class="exp-item poster-frame">
+              <h3>IT Front Desk & Knowledge Mgmt — Huston-Tillotson</h3>
+              <p class="muted">Improved Freshservice workflows, standardized knowledge articles, and assisted with NIST-aligned assessments.</p>
+            </article>
+            <article class="exp-item poster-frame">
+              <h3>CAIT — Lab Admin</h3>
+              <p class="muted">Coordinated lab setups for faculty and students, managed macOS imaging and support.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="contact" class="reveal" style="margin-top:18px;">
+          <h2>Contact</h2>
+          <p class="muted">Open to internships, freelance cybersecurity tasks, and creative-technical collaborations.</p>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" id="copyEmail">Copy Email</button>
+            <button class="ghost" id="togglePattern">Toggle Pattern</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="reveal">© <span id="year"></span> Jada Daniels · Austin, TX</footer>
+  </div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('print').addEventListener('click', ()=> window.print());
+  document.getElementById('email').addEventListener('click', ()=> location.href='mailto:jada11500610.jd@gmail.com');
+
+  document.getElementById('copyEmail').addEventListener('click', async function(){
+    try{ await navigator.clipboard.writeText('jada11500610.jd@gmail.com'); this.textContent='Copied!'; setTimeout(()=> this.textContent='Copy Email',1500); }
+    catch(e){ this.textContent='Failed'; setTimeout(()=> this.textContent='Copy Email',1500); }
+  });
+
+  // pattern toggle for sidebar zebra/cheetah
+  document.getElementById('togglePattern').addEventListener('click', ()=>{
+    document.querySelectorAll('.poster-frame').forEach(el=>{
+      el.classList.toggle('zebra');
+      el.classList.toggle('cheetah-subtle');
+    });
+  });
+
+  // scroll reveal
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('visible'); obs.unobserve(en.target); }
+    });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // small chip animation
+  document.querySelectorAll('.skill-chip').forEach(ch=>{
+    ch.addEventListener('click', ()=> {
+      ch.animate([{transform:'scale(1)'},{transform:'scale(1.06)'}],{duration:220,fill:'forwards'});
+      document.querySelectorAll('.exp-item').forEach(it=> { it.style.boxShadow='0 18px 40px rgba(143,91,214,0.12)'; setTimeout(()=> it.style.boxShadow='',600); });
+    });
+  });
+</script>
+</body>
+</html>
