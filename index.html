@@ -3,275 +3,122 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Jada Daniels — ePortfolio / Resume</title>
+<title>Jada Daniels — Light Funky Portfolio</title>
+<meta name="description" content="Light funky ePortfolio for Jada Daniels — eclectic, creative, professional."/>
 <style>
-  :root {
-    --accent: #6a4fb0;
-    --accent-2: #9b6cff;
-    --bg: #faf7fc;
-    --card: #ffffff;
-    --text: #2b2b33;
-    --muted: #555;
-    --radius: 14px;
-    --max-width: 1100px;
-    font-family: "Inter", system-ui, sans-serif;
+  /* Palette & base */
+  :root{
+    --bg:#faf7fc;           /* pale lavender */
+    --card:#ffffff;
+    --text:#2b2b33;
+    --muted:#63626a;
+    --accent:#6a4fb0;
+    --accent-2:#e092ff;
+    --warm:#e6bea7;
+    --radius:14px;
+    --maxw:1100px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    margin: 0;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    transition: background 0.4s ease, color 0.4s ease;
+  /* Utility pattern: subtle paper noise (SVG dataURI) */
+  body{
+    margin:0;
+    background:
+      radial-gradient(rgba(106,79,176,0.03) 0.5px, transparent 0.6px),
+      linear-gradient(180deg, rgba(250,247,252,1), rgba(252,250,254,1));
+    background-size:18px 18px, 100% 100%;
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
   }
 
-  .wrap {
-    max-width: var(--max-width);
-    margin: 32px auto;
-    padding: 20px;
+  .wrap{ max-width:var(--maxw); margin:28px auto; padding:20px; }
+
+  /* Header */
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; padding:14px; border-radius:var(--radius);
+    background: linear-gradient(90deg, rgba(106,79,176,0.08), rgba(224,146,255,0.04));
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    position:sticky; top:14px; z-index:40;
+  }
+  .left{ display:flex; gap:14px; align-items:center; min-width:0; }
+  .avatar{
+    width:88px; height:88px; border-radius:12px;
+    background: linear-gradient(135deg,var(--accent), var(--accent-2));
+    color: #fff; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:28px; box-shadow: 0 8px 30px rgba(106,79,176,0.15);
+    border:4px solid rgba(255,255,255,0.25);
+  }
+  h1{ margin:0; font-size:20px; color:var(--text); }
+  p.title{ margin:4px 0 0 0; color:var(--muted); font-weight:600; font-size:13px; }
+
+  nav.top{ display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  nav.top a{
+    text-decoration:none; color:var(--accent); font-weight:700; font-size:13px;
+    padding:6px 10px; border-radius:10px;
+    transition: all .18s ease;
+  }
+  nav.top a:hover{ background: rgba(106,79,176,0.06); transform:translateY(-3px); }
+
+  .controls{ display:flex; gap:8px; align-items:center; }
+
+  .btn{
+    background: linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#fff; border:none; padding:8px 12px; border-radius:10px; cursor:pointer;
+    font-weight:700; box-shadow: 0 8px 22px rgba(106,79,176,0.12);
+  }
+  .ghost{ background:transparent; border:1px solid rgba(0,0,0,0.06); color:var(--muted); padding:8px 12px; border-radius:10px; cursor:pointer; }
+
+  /* Layout */
+  .grid{ display:grid; grid-template-columns:300px 1fr; gap:22px; margin-top:20px; }
+  @media (max-width:900px){ .grid{ grid-template-columns:1fr } .avatar{width:72px;height:72px} }
+
+  aside.card, main.card{ background:var(--card); border-radius:12px; padding:18px; box-shadow: 0 12px 30px rgba(20,18,22,0.04); }
+
+  /* Cheetah accent (CSS generated pattern using radial-gradients) */
+  .cheetah{
+    --s:14px;
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(0,0,0,0.14) 0 1.6px, transparent 2px),
+      radial-gradient(circle at 40% 70%, rgba(0,0,0,0.12) 0 1.6px, transparent 2px),
+      radial-gradient(circle at 82% 32%, rgba(0,0,0,0.12) 0 1.6px, transparent 2px);
+    background-size: var(--s) var(--s);
+    border-radius:10px;
+    padding:10px;
   }
 
-  header.site-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(90deg, rgba(106,79,176,0.1), rgba(155,108,255,0.05));
-    padding: 16px 20px;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    position: sticky;
-    top: 10px;
-    z-index: 50;
-    backdrop-filter: blur(10px);
+  h2{ color:var(--accent); margin:0 0 8px 0; font-size:16px; }
+
+  .muted{ color:var(--muted); font-size:14px; }
+
+  .skill-chip{ display:inline-block; padding:6px 10px; border-radius:999px; background:linear-gradient(90deg, rgba(106,79,176,0.08), rgba(224,146,255,0.04)); margin:6px 6px 6px 0; font-weight:700; cursor:pointer; }
+
+  .exp{ display:flex; flex-direction:column; gap:12px; margin-top:10px; }
+  .exp-item{ background: linear-gradient(180deg, rgba(250,247,252,1), rgba(246,241,249,0.9)); border-radius:10px; padding:12px; border-left:6px solid var(--warm); box-shadow: 0 8px 18px rgba(0,0,0,0.03); }
+  .exp-item h3{ margin:0; font-size:15px; color:var(--text); }
+  .exp-item p{ margin:6px 0 0 0; color:var(--muted); font-size:14px; }
+
+  /* decorative poster collage frames */
+  .poster{
+    border-radius:10px; overflow:hidden; padding:10px; background:linear-gradient(180deg, rgba(250,247,252,1), rgba(251,249,253,1));
+    box-shadow: 0 18px 40px rgba(100,60,140,0.06);
+    border:1px solid rgba(0,0,0,0.03);
   }
 
-  .avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 28px;
-    box-shadow: 0 4px 15px rgba(106,79,176,0.25);
-  }
+  /* footer */
+  footer{ text-align:center; margin-top:18px; color:var(--muted); font-size:13px; }
 
-  h1 {
-    font-size: 24px;
-    margin: 0;
-  }
+  /* reveal animations */
+  .reveal{ opacity:0; transform:translateY(14px); transition: all .7s cubic-bezier(.2,.9,.2,1); }
+  .reveal.visible{ opacity:1; transform:none; }
 
-  .title {
-    color: var(--muted);
-    font-weight: 600;
-    font-size: 14px;
-  }
+  /* small interactive niceties */
+  .btn:active{ transform:translateY(1px) }
+  a.icon{ color:var(--accent); font-weight:900; }
 
-  nav.top-nav {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  nav.top-nav a {
-    text-decoration: none;
-    color: var(--accent);
-    font-weight: 600;
-    padding: 6px 10px;
-    border-radius: 8px;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  nav.top-nav a:hover {
-    background: rgba(106,79,176,0.1);
-    transform: translateY(-2px);
-  }
-
-  .btn {
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: transform 0.2s ease, background 0.3s ease;
-  }
-  .btn:hover { transform: translateY(-2px); }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 20px;
-    margin-top: 24px;
-  }
-
-  @media (max-width: 800px) {
-    .grid { grid-template-columns: 1fr; }
-  }
-
-  aside.card, main.card {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    transition: background 0.3s ease;
-  }
-
-  h2 {
-    color: var(--accent);
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .skill-chip {
-    display: inline-block;
-    background: rgba(106,79,176,0.08);
-    color: var(--text);
-    border-radius: 999px;
-    padding: 6px 12px;
-    margin: 4px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .skill-chip:hover { transform: translateY(-3px); }
-
-  .exp-item {
-    background: rgba(106,79,176,0.05);
-    border-left: 4px solid var(--accent);
-    padding: 12px 16px;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    transition: background 0.3s ease;
-  }
-
-  footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  /* Dark Theme */
-  body.dark {
-    --bg: #0c0813;
-    --card: #1a1422;
-    --text: #d5d4e0;
-    --muted: #a39fc0;
-  }
-
-  body.dark header.site-header {
-    background: linear-gradient(90deg, rgba(106,79,176,0.15), rgba(155,108,255,0.08));
-  }
-
-  body.dark nav.top-nav a { color: #bca7ff; }
-  body.dark .exp-item { background: rgba(255,255,255,0.05); }
-
-  @media (prefers-color-scheme: dark) {
-    body:not(.light) {
-      --bg: #0c0813;
-      --card: #1a1422;
-      --text: #d5d4e0;
-      --muted: #a39fc0;
-    }
-  }
-</style>
-</head>
-<body>
-  <div class="wrap">
-    <header class="site-header">
-      <div style="display:flex; align-items:center; gap:14px;">
-        <div class="avatar">JD</div>
-        <div>
-          <h1>Jada Daniels</h1>
-          <div class="title">Computer Science — Cybersecurity | IT Intern</div>
-          <nav class="top-nav">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button class="btn" id="themeToggle">Toggle Theme</button>
-      </div>
-    </header>
-
-    <div class="grid">
-      <aside class="card">
-        <h2>Contact</h2>
-        <p>📧 jada11500610.jd@gmail.com<br>📞 (346) 441-1810<br>📍 Austin, TX</p>
-
-        <h2>Skills</h2>
-        <div>
-          <span class="skill-chip">Risk Assessment</span>
-          <span class="skill-chip">Python</span>
-          <span class="skill-chip">Linux</span>
-          <span class="skill-chip">JavaScript</span>
-          <span class="skill-chip">Encryption</span>
-        </div>
-
-        <h2>Education</h2>
-        <p><b>Huston-Tillotson University</b><br>B.S. Computer Science — Cybersecurity<br>Expected Dec 2025</p>
-      </aside>
-
-      <main class="card">
-        <section id="about">
-          <h2>About</h2>
-          <p>I’m a Computer Science student focusing on cybersecurity with experience in IT support, knowledge management, and automation for compliance (NIST 800-181). I enjoy optimizing systems, documenting processes, and helping teams improve efficiency.</p>
-        </section>
-
-        <section id="skills">
-          <h2>Technical Proficiency</h2>
-          <p>Python, JavaScript, Linux, Network Security, Microsoft 365, Risk Assessment, and Command Line Tools.</p>
-        </section>
-
-        <section id="experience">
-          <h2>Experience</h2>
-          <div class="exp-item">
-            <b>Huston-Tillotson University — IT Front Desk Intern</b>
-            <p>Provided IT support, maintained the Knowledge Base (SharePoint), and assisted in NIST cybersecurity compliance processes.</p>
-          </div>
-          <div class="exp-item">
-            <b>Center for Academic Innovation — CAIT Intern</b>
-            <p>Managed Apple iMac labs, supported faculty and students, and improved documentation practices.</p>
-          </div>
-        </section>
-
-        <section id="contact">
-          <h2>Contact</h2>
-          <p>Interested in IT or cybersecurity collaboration opportunities. Feel free to reach out!</p>
-          <button class="btn" onclick="window.location.href='mailto:jada11500610.jd@gmail.com'">Email Me</button>
-        </section>
-      </main>
-    </div>
-
-    <footer>© <span id="year"></span> Jada Daniels · Austin, TX</footer>
-  </div>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// Detect system theme on load
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  document.body.classList.add("dark");
-}
-
-// Theme toggle button
-const toggle = document.getElementById("themeToggle");
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  document.body.classList.toggle("light");
-});
-</script>
-</body>
-</html>
+  /* responsive small tweaks */
+  @media (max-width:520px){
+    header{ padding:12px }
+    .controls{ width:100%; justify-content:flex-end
