@@ -8,18 +8,22 @@
   :root {
     --accent: #6a4fb0;
     --accent-2: #9b6cff;
+    --bg: #faf7fc;
+    --card: #ffffff;
+    --text: #2b2b33;
+    --muted: #555;
     --radius: 14px;
     --max-width: 1100px;
     font-family: "Inter", system-ui, sans-serif;
   }
 
   body {
-    background: #f5f5f8;
-    color: #2d2e3a;
+    background: var(--bg);
+    color: var(--text);
     margin: 0;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.4s ease, color 0.4s ease;
   }
 
   .wrap {
@@ -40,7 +44,7 @@
     position: sticky;
     top: 10px;
     z-index: 50;
-    transition: background 0.3s ease;
+    backdrop-filter: blur(10px);
   }
 
   .avatar {
@@ -60,11 +64,10 @@
   h1 {
     font-size: 24px;
     margin: 0;
-    color: inherit;
   }
 
   .title {
-    color: #555;
+    color: var(--muted);
     font-weight: 600;
     font-size: 14px;
   }
@@ -97,7 +100,7 @@
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background 0.3s ease;
   }
   .btn:hover { transform: translateY(-2px); }
 
@@ -113,7 +116,7 @@
   }
 
   aside.card, main.card {
-    background: #ffffff;
+    background: var(--card);
     border-radius: var(--radius);
     padding: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
@@ -129,7 +132,7 @@
   .skill-chip {
     display: inline-block;
     background: rgba(106,79,176,0.08);
-    color: inherit;
+    color: var(--text);
     border-radius: 999px;
     padding: 6px 12px;
     margin: 4px;
@@ -154,33 +157,32 @@
     text-align: center;
     margin-top: 20px;
     font-size: 13px;
-    color: #555;
+    color: var(--muted);
   }
 
-  /* Dark theme styles */
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: #0b0710;
-      color: #d5d4e0;
-    }
-    header.site-header {
-      background: linear-gradient(90deg, rgba(106,79,176,0.15), rgba(155,108,255,0.08));
-    }
-    aside.card, main.card { background: #14101a; }
-    nav.top-nav a { color: #bca7ff; }
-    .exp-item { background: rgba(255,255,255,0.05); }
-  }
-
+  /* Dark Theme */
   body.dark {
-    background: #0b0710;
-    color: #d5d4e0;
+    --bg: #0c0813;
+    --card: #1a1422;
+    --text: #d5d4e0;
+    --muted: #a39fc0;
   }
+
   body.dark header.site-header {
     background: linear-gradient(90deg, rgba(106,79,176,0.15), rgba(155,108,255,0.08));
   }
-  body.dark aside.card, body.dark main.card { background: #14101a; }
+
   body.dark nav.top-nav a { color: #bca7ff; }
   body.dark .exp-item { background: rgba(255,255,255,0.05); }
+
+  @media (prefers-color-scheme: dark) {
+    body:not(.light) {
+      --bg: #0c0813;
+      --card: #1a1422;
+      --text: #d5d4e0;
+      --muted: #a39fc0;
+    }
+  }
 </style>
 </head>
 <body>
@@ -258,9 +260,17 @@
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Detect system theme on load
+if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  document.body.classList.add("dark");
+}
+
+// Theme toggle button
 const toggle = document.getElementById("themeToggle");
 toggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 });
 </script>
 </body>
